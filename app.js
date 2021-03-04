@@ -5,7 +5,7 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 
 const app = express();
-
+const port = process.env.PORT || 5000; //specifies the port no to whatever heroku gives or 5000 on local host
 // View engine setup
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
@@ -16,6 +16,11 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.listen(port, function(err){ 
+  if (err) console.log("Error in server setup") 
+  console.log("Server listening on Port", port); 
+}) 
 
 app.get('/', (req, res) => {
   res.render('contact');

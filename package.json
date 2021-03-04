@@ -1,11 +1,11 @@
 {
-  "name": "nodecontactform",
+  "name": "node-mail-form",
   "version": "1.0.0",
   "description": "Sample app using nodemailer",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm start"
+    "start": "node app.js"
   },
   "author": "Muzaffar Mohammed",
   "license": "MIT",
