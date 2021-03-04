@@ -1,0 +1,9 @@
+{
+    "1":{
+        "host": "smtpout.secureserver.net",
+        "port": 465,
+        "user": "support@appseonit.com",
+        "pass": "Support@2129"
+
+    }
+}

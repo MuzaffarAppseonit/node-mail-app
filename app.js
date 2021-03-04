@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const path = require('path');
 const nodemailer = require('nodemailer');
-
+const user_config = require('./public/config/user_config.json');
 const app = express();
 const port = process.env.PORT || 5000; //specifies the port no to whatever heroku gives or 5000 on local host
 // View engine setup
@@ -28,26 +28,27 @@ app.get('/', (req, res) => {
 
 app.post('/send', (req, res) => {
   const output = `
-    <p>You have a new contact request</p>
+    <p>You have a new contact request through your website</p>
     <h3>Contact Details</h3>
     <ul>  
       <li>Name: ${req.body.name}</li>
-      <li>Company: ${req.body.company}</li>
       <li>Email: ${req.body.email}</li>
-      <li>Phone: ${req.body.phone}</li>
     </ul>
     <h3>Message</h3>
     <p>${req.body.message}</p>
   `;
 
+
+  var user = user_config[req.body.clientId];
+
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
-    host: 'smtpout.secureserver.net',
-    port: 465,
+    host: user.host,
+    port: user.port,
     secure: true, // true for 465, false for other ports
     auth: {
-        user: 'support@appseonit.com', // generated ethereal user
-        pass: 'Support@2129'  // generated ethereal password
+        user: user.user, 
+        pass: user.pass
     },
     tls:{
       rejectUnauthorized:false
@@ -56,10 +57,10 @@ app.post('/send', (req, res) => {
 
   // setup email data with unicode symbols
   let mailOptions = {
-      from: '"Nodemailer Contact" '+ req.body.email, // sender address
-      to: 'support@appseonit.com', // list of receivers
-      subject: 'Node Contact Request', // Subject line
-      text: 'Hello world?', // plain text body
+      from: req.body.name +' '+ req.body.email, // sender address
+      to: user.user, // list of receivers
+      subject: 'A contact request from your website', // Subject line
+      // text: 'Hello world?', // plain text body
       html: output // html body
   };
 
