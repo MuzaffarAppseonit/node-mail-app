@@ -1,4 +1,5 @@
 const express = require('express');
+var cors = require('cors');
 const bodyParser = require('body-parser');
 const exphbs = require('express-handlebars');
 const path = require('path');
@@ -10,6 +11,21 @@ const port = process.env.PORT || 5000; //specifies the port no to whatever herok
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 app.locals.layout = false;
+var allowedOrigins = ['http://localhost:5000',
+                      'https://dev-mforceinc.netlify.app'];
+app.use(cors({
+  origin: function(origin, callback){
+    // allow requests with no origin 
+    // (like mobile apps or curl requests)
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) === -1){
+      var msg = 'The CORS policy for this site does not ' +
+                'allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}));
 // Static folder
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
