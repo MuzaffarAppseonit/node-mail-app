@@ -13,7 +13,7 @@ app.set('view engine', 'handlebars');
 app.locals.layout = false;
 var allowedOrigins = ['http://localhost:5000',
                       'https://dev-mforceinc.netlify.app',
-                    'https://dev-secupower.netlify.app/'];
+                    'https://dev-secupower.netlify.app'];
 app.use(cors({
   origin: function(origin, callback){
     // allow requests with no origin 
