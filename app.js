@@ -12,7 +12,7 @@ app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 app.locals.layout = false;
 var allowedOrigins = ['http://localhost:5000',
-                      'https://www.mforceinc.com',
+                      user_config[1].url,
                       ];
 app.use(cors({
   origin: function(origin, callback){

@@ -1,5 +1,6 @@
 {
     "1":{
+        "url": "https://www.mforceinc.com",
         "host": "smtpout.secureserver.net",
         "port": 465,
         "user": "admin@mforceinc.com",
