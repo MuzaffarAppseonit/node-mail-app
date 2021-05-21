@@ -12,7 +12,8 @@ app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 app.locals.layout = false;
 var allowedOrigins = ['http://localhost:5000',
-                      user_config[1].url,
+                      user_config[1].url,//Mforce URL
+                       user_config[2].url,//Appseonit URL
                       ];
 app.use(cors({
   origin: function(origin, callback){
