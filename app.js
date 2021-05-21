@@ -12,8 +12,8 @@ app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 app.locals.layout = false;
 var allowedOrigins = ['http://localhost:5000',
-                      user_config[1].url,//Mforce URL
-                       user_config[2].url,//Appseonit URL
+                       user_config[0].url,//Appseonit URL
+                       user_config[1].url,//Mforce URL
                       ];
 app.use(cors({
   origin: function(origin, callback){
@@ -21,8 +21,7 @@ app.use(cors({
     // (like mobile apps or curl requests)
     if(!origin) return callback(null, true);
     if(allowedOrigins.indexOf(origin) === -1){
-      var msg = 'The CORS policy for this site does not ' +
-                'allow access from the specified Origin.';
+      var msg = 'Appseonit CORS policy for this site does not allow access from the specified origin.';
       return callback(new Error(msg), false);
     }
     return callback(null, true);
@@ -47,11 +46,12 @@ app.get('/', (req, res) => {
 app.post('/send', (req, res) => {
   const output = `
     <p>You have a new contact request through your website</p>
+    ${req.body.clientId == '0'? ('Subject:'+req.body.subject):''}
     <h3>Contact Details</h3>
-    <ul>  
+    <ul> 
       <li>Name: ${req.body.name}</li>
       <li>Email: ${req.body.email}</li>
-      <li>Email: ${req.body.contactNo}</li>
+      <li>Contact Number: ${req.body.contactNo}</li>
     </ul>
     <h3>Message</h3>
     <p>${req.body.message}</p>
