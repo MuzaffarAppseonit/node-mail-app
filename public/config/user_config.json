@@ -17,7 +17,7 @@
     },
     "2":{
         "url": "https://www.secupower-sa.com",
-        "host": "smtpout.secureserver.net",
+        "host": "smtp.gmail.com",
         "port": 465,
         "user": "secupowersa@gmail.com",
         "pass": "secupower123"
