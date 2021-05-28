@@ -14,5 +14,13 @@
         "user": "admin@mforceinc.com",
         "pass": "Mforce2021@$123"
 
+    },
+    "2":{
+        "url": "https://www.secupower-sa.com",
+        "host": "smtpout.secureserver.net",
+        "port": 465,
+        "user": "secupowersa@gmail.com",
+        "pass": "secupower123"
+
     }
 }

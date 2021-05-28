@@ -14,6 +14,7 @@ app.locals.layout = false;
 var allowedOrigins = ['http://localhost:5000',
                        user_config[0].url,//Appseonit URL
                        user_config[1].url,//Mforce URL
+                       user_config[2].url,//SecuPower URL
                       ];
 app.use(cors({
   origin: function(origin, callback){
