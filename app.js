@@ -16,6 +16,7 @@ var allowedOrigins = ['http://localhost:5000',
   process.env.CLIENT_1,//Appseonit URL
   process.env.CLIENT_2,//Mforce URL
   process.env.CLIENT_3,//SecuPower URL
+  process.env.CLIENT_4,//IntegroHospital URL
 ];
 app.use(cors({
   origin: function (origin, callback) {
